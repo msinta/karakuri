@@ -4,173 +4,98 @@ import { useT } from '@/context/LanguageContext'
 import content from '@/content'
 import { trackEvent } from '@/lib/ga4'
 
-// Clay-style enrichment table — rows are Japanese companies,
-// columns are JP data sources + AI personalization steps
-function ClayStyleTable() {
-  const columns = [
-    { key: 'company', label: '企業名', sub: 'Company', source: null, w: 'min-w-[150px]' },
-    { key: 'sansan', label: 'Sansan', sub: '担当者', source: { color: '#0EA5E9', initial: 'S' }, w: 'min-w-[140px]' },
-    { key: 'tdb', label: '帝国DB', sub: '売上規模', source: { color: '#7C3AED', initial: 'T' }, w: 'min-w-[100px]' },
-    { key: 'tsr', label: 'TSR', sub: '従業員数', source: { color: '#F97316', initial: 'R' }, w: 'min-w-[100px]' },
-    { key: 'ai', label: 'AI下書き', sub: '日本語パーソナライズ', source: { color: '#D97706', initial: 'AI' }, w: 'min-w-[180px]' },
-  ]
-
-  const rows = [
-    {
-      company: '株式会社モチコ',
-      url: 'mochico.jp',
-      sansan: { name: '田中 健', role: 'CMO', state: 'done' as const },
-      tdb: { val: '12.4億', state: 'done' as const },
-      tsr: { val: '85名', state: 'done' as const },
-      ai: { preview: '田中様、貴社の新CRM導入のニュースを拝見し...', state: 'done' as const },
-    },
-    {
-      company: '合同会社サクラ商事',
-      url: 'sakura-trade.co.jp',
-      sansan: { name: '山田 美咲', role: 'VP Sales', state: 'done' as const },
-      tdb: { val: '3.8億', state: 'done' as const },
-      tsr: { val: '32名', state: 'done' as const },
-      ai: { preview: '山田様、Wantedlyで採用拡大中とのこと...', state: 'done' as const },
-    },
-    {
-      company: '株式会社ヒカリ',
-      url: 'hikari.io',
-      sansan: { name: '佐藤 直樹', role: 'CEO', state: 'done' as const },
-      tdb: { val: '—', state: 'pending' as const },
-      tsr: { val: '14名', state: 'done' as const },
-      ai: { preview: '実行中...', state: 'running' as const },
-    },
-    {
-      company: 'テクノ株式会社',
-      url: 'techno.jp',
-      sansan: { name: '—', role: '', state: 'queued' as const },
-      tdb: { val: '—', state: 'queued' as const },
-      tsr: { val: '—', state: 'queued' as const },
-      ai: { preview: '—', state: 'queued' as const },
-    },
-  ]
-
+// Hostinger-style dark mockup: grid-paper background + dark card +
+// floating purple "Deploy" button hovering at the corner
+function HeroVisual() {
   return (
     <div className="relative">
-      {/* Decorative glow */}
-      <div className="absolute -inset-6 bg-gradient-to-tr from-amber-200/40 via-orange-100/30 to-rose-100/20 blur-3xl rounded-[40px]" aria-hidden />
+      {/* Grid-paper backdrop */}
+      <div
+        className="absolute inset-0 -m-8 rounded-3xl opacity-50"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
+          backgroundSize: '36px 36px',
+        }}
+        aria-hidden
+      />
 
-      <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-2xl shadow-amber-300/20 bg-white">
-        {/* Window chrome */}
-        <div className="bg-slate-50 border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-red-400" />
-              <div className="w-3 h-3 rounded-full bg-yellow-400" />
-              <div className="w-3 h-3 rounded-full bg-green-400" />
+      <div className="relative">
+        {/* Main dark card showing enrichment status */}
+        <div className="rounded-2xl border border-white/10 bg-ink-800/90 overflow-hidden shadow-2xl shadow-black/60">
+
+          {/* Window chrome */}
+          <div className="px-4 py-3 border-b border-white/5 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-white/15" />
+              <span className="text-[11px] font-mono text-slate-400">karakuri.app/lists/tokyo-saas</span>
             </div>
-            <span className="ml-3 text-[11px] font-bold text-slate-700">東京 SaaS リスト · 1,247社</span>
+            <span className="text-[10px] font-bold text-emerald-400">● Enriching</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-semibold text-slate-400 hidden sm:inline">クレジット使用: 142 / 5,000</span>
-            <span className="bg-amber-50 border border-amber-200 text-amber-800 text-[10px] font-black px-2 py-0.5 rounded">+ 列を追加</span>
-          </div>
-        </div>
 
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="border-b border-slate-200 bg-slate-50/60">
-                {columns.map((c) => (
-                  <th key={c.key} className={`${c.w} px-3 py-2.5`}>
-                    <div className="flex items-center gap-1.5">
-                      {c.source && (
-                        <div className="w-5 h-5 rounded flex items-center justify-center flex-shrink-0" style={{ backgroundColor: c.source.color }}>
-                          <span className="text-white text-[8px] font-black">{c.source.initial}</span>
-                        </div>
-                      )}
-                      <div className="min-w-0">
-                        <p className="text-[11px] font-black text-slate-800 leading-none">{c.label}</p>
-                        <p className="text-[9px] text-slate-400 mt-0.5">{c.sub}</p>
-                      </div>
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r, i) => (
-                <tr key={i} className="border-b border-slate-100 hover:bg-slate-50/50">
-                  <td className="px-3 py-2.5">
-                    <div>
-                      <p className="text-[11px] font-bold text-slate-900 truncate">{r.company}</p>
-                      <p className="text-[9px] text-slate-400 truncate">{r.url}</p>
-                    </div>
-                  </td>
-                  <td className="px-3 py-2.5">
-                    {r.sansan.state === 'done' ? (
-                      <div>
-                        <p className="text-[11px] font-semibold text-slate-700 truncate">{r.sansan.name}</p>
-                        <p className="text-[9px] text-slate-400 truncate">{r.sansan.role}</p>
-                      </div>
-                    ) : (
-                      <span className="text-[10px] text-slate-300">待機中</span>
-                    )}
-                  </td>
-                  <td className="px-3 py-2.5">
-                    {r.tdb.state === 'done' ? (
-                      <span className="text-[11px] font-semibold text-slate-700">{r.tdb.val}</span>
-                    ) : r.tdb.state === 'pending' ? (
-                      <span className="text-[10px] text-amber-600 font-bold">未公開</span>
-                    ) : (
-                      <span className="text-[10px] text-slate-300">—</span>
-                    )}
-                  </td>
-                  <td className="px-3 py-2.5">
-                    {r.tsr.state === 'done' ? (
-                      <span className="text-[11px] font-semibold text-slate-700">{r.tsr.val}</span>
-                    ) : (
-                      <span className="text-[10px] text-slate-300">—</span>
-                    )}
-                  </td>
-                  <td className="px-3 py-2.5">
-                    {r.ai.state === 'done' ? (
-                      <div className="flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
-                        <p className="text-[10px] text-slate-600 truncate italic">"{r.ai.preview}"</p>
-                      </div>
-                    ) : r.ai.state === 'running' ? (
-                      <div className="flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse flex-shrink-0" />
-                        <span className="text-[10px] text-amber-700 font-semibold">{r.ai.preview}</span>
-                      </div>
-                    ) : (
-                      <span className="text-[10px] text-slate-300">キューに登録済</span>
-                    )}
-                  </td>
-                </tr>
+          {/* Table preview */}
+          <div className="px-5 py-5">
+            {/* Column header pills */}
+            <div className="flex items-center gap-2 mb-4">
+              {[
+                { l: '企業名', c: '#27273B' },
+                { l: 'Sansan', c: '#0EA5E9' },
+                { l: '帝国DB', c: '#7C3AED' },
+                { l: 'TSR', c: '#F97316' },
+                { l: 'AI下書き', c: '#673DE6' },
+              ].map((col, i) => (
+                <span
+                  key={col.l}
+                  className="text-[10px] font-black px-2.5 py-1 rounded-md text-white"
+                  style={{ backgroundColor: col.c + (i === 0 ? '' : 'CC') }}
+                >
+                  {col.l}
+                </span>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </div>
 
-        {/* Footer status bar */}
-        <div className="bg-slate-50 border-t border-slate-100 px-4 py-2.5 flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[10px] font-bold text-emerald-700">エンリッチメント実行中 · 残り 23社</span>
+            {/* Three rows */}
+            <div className="space-y-2">
+              {[
+                { co: '株式会社モチコ', s: '田中 健 (CMO)', t: '12.4億', r: '85名', ai: 'done' as const, msg: '田中様、貴社のCRM刷新...' },
+                { co: '合同会社サクラ商事', s: '山田 美咲 (VP)', t: '3.8億', r: '32名', ai: 'done' as const, msg: '山田様、採用拡大とのこと...' },
+                { co: '株式会社ヒカリ', s: '佐藤 直樹 (CEO)', t: '—', r: '14名', ai: 'running' as const, msg: '実行中...' },
+              ].map((r, i) => (
+                <div key={i} className="bg-ink-700/60 border border-white/5 rounded-lg px-3 py-2.5 flex items-center gap-3 text-[11px]">
+                  <span className="font-bold text-white truncate w-28">{r.co}</span>
+                  <span className="text-slate-300 truncate w-28">{r.s}</span>
+                  <span className="text-slate-400 w-12">{r.t}</span>
+                  <span className="text-slate-400 w-12">{r.r}</span>
+                  <span className={`flex items-center gap-1.5 flex-1 truncate text-[10px] italic ${r.ai === 'running' ? 'text-brand-400' : 'text-emerald-400'}`}>
+                    <span className={`w-1.5 h-1.5 rounded-full ${r.ai === 'running' ? 'bg-brand-400 animate-pulse' : 'bg-emerald-400'}`} />
+                    "{r.msg}"
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Status row */}
+            <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between">
+              <span className="text-[10px] font-bold text-slate-400">クレジット 142 / 5,000</span>
+              <span className="text-[10px] font-bold text-emerald-400">残り 23社 · 自動エンリッチ中</span>
+            </div>
           </div>
-          <button className="text-[10px] font-black bg-brand-600 text-white px-3 py-1 rounded">
-            HubSpotにPush →
-          </button>
         </div>
-      </div>
 
-      {/* Floating credit-cost badge */}
-      <div className="absolute -bottom-5 -left-4 bg-white rounded-xl border border-slate-200 shadow-lg px-3 py-2 flex items-center gap-2">
-        <div className="w-7 h-7 rounded-md bg-amber-100 flex items-center justify-center">
-          <span className="text-amber-700 text-xs">💴</span>
-        </div>
-        <div>
-          <p className="text-[10px] font-black text-slate-900 leading-tight">1社あたり 4クレジット</p>
-          <p className="text-[9px] text-slate-400">Sansan + TDB + TSR + AI</p>
-        </div>
+        {/* Floating purple Deploy-style button */}
+        <button className="absolute -top-4 -right-2 sm:-right-6 bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm px-5 py-3 rounded-xl shadow-2xl shadow-brand-600/50 transition-colors flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" /></svg>
+          HubSpotにPush
+        </button>
+
+        {/* Cursor arrow next to button */}
+        <svg
+          className="absolute -top-7 -right-12 hidden sm:block"
+          width="22" height="22" viewBox="0 0 24 24" fill="white"
+          aria-hidden
+        >
+          <path d="M2 2l8 18 2-8 8-2z" />
+        </svg>
       </div>
     </div>
   )
@@ -189,75 +114,92 @@ export default function Hero({ onCtaClick }: { onCtaClick: () => void }) {
   }
 
   return (
-    <section className="pt-24 pb-20 px-5 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section className="relative pt-32 pb-20 px-6 bg-ink-900 overflow-hidden">
+      {/* Subtle radial glow behind hero */}
+      <div
+        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-20 blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #673DE6 0%, transparent 70%)' }}
+        aria-hidden
+      />
 
+      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        {/* Left column */}
         <div>
-          <div className="flex items-center gap-2 mb-5">
-            <span className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold px-3 py-1 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-              {t(content.hero.eyebrow)}
-            </span>
-            <span className="hidden sm:inline-flex bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold px-2.5 py-1 rounded-full">
-              {t(content.hero.guarantee)}
-            </span>
-          </div>
+          {/* Eyebrow — purple text, no chip, just text like Hostinger */}
+          <p className="text-brand-400 text-sm sm:text-base font-bold mb-5">
+            {t(content.hero.eyebrow)}
+          </p>
 
-          <h1 className="text-[2.75rem] sm:text-[3.5rem] lg:text-[4rem] font-black text-slate-900 leading-[1.02] tracking-tight mb-5 whitespace-pre-line">
+          {/* Huge headline */}
+          <h1 className="text-[2.75rem] sm:text-[3.75rem] lg:text-[4.5rem] font-black text-white leading-[1.02] tracking-tight mb-6 whitespace-pre-line">
             {t(content.hero.headline)}
           </h1>
 
-          <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-7 max-w-xl">
+          {/* Sub */}
+          <p className="text-slate-400 text-base sm:text-lg leading-relaxed mb-7 max-w-xl">
             {t(content.hero.subheadline)}
           </p>
 
-          <ul className="space-y-2 mb-7">
+          {/* Includes — Hostinger green-check list */}
+          <ul className="space-y-2.5 mb-8">
             {content.hero.includes.map((item, i) => (
-              <li key={i} className="flex items-center gap-2.5 text-sm text-slate-700">
-                <span className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 13l4 4L19 7" />
-                  </svg>
-                </span>
+              <li key={i} className="flex items-center gap-2.5 text-sm text-slate-200">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
+                  <path d="M5 13l4 4L19 7" />
+                </svg>
                 <span>{t(item)}</span>
               </li>
             ))}
           </ul>
 
+          {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3 mb-7">
             <button
               onClick={handleCta}
-              className="bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-4 rounded-xl text-base transition-colors shadow-lg shadow-amber-300/30"
+              className="bg-brand-600 hover:bg-brand-500 text-white font-bold px-8 py-4 rounded-xl text-base transition-colors shadow-lg shadow-brand-600/30"
             >
               {t(content.hero.cta)}
             </button>
             <button
               onClick={handleDemoClick}
-              className="flex items-center justify-center gap-2 border border-slate-200 hover:border-slate-300 text-slate-700 font-bold px-7 py-4 rounded-xl text-base transition-colors"
+              className="flex items-center justify-center gap-2 border border-white/15 hover:border-white/25 text-white font-bold px-7 py-4 rounded-xl text-base transition-colors"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
               {t(content.hero.secondaryCta)}
             </button>
           </div>
 
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-400">
-            <span className="flex items-center gap-1.5">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-              <span>{t({ jp: 'APPI準拠', en: 'APPI compliant' })}</span>
+          {/* Guarantee + Trustpilot row */}
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-slate-400">
+            <span className="inline-flex items-center gap-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+              {t(content.hero.guarantee)}
             </span>
-            <span className="flex items-center gap-1.5">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20" /></svg>
-              <span>{t({ jp: '日本国内データ', en: 'JP-region data' })}</span>
-            </span>
-            <span className="flex items-center gap-1.5">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
-              <span>{t({ jp: 'クレジット制', en: 'Credit-based billing' })}</span>
+            {/* Trustpilot widget */}
+            <span className="inline-flex items-center gap-1.5">
+              <span className="font-semibold text-white">Excellent</span>
+              <span className="flex gap-0.5">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <span key={i} className="w-4 h-4 bg-[#00B67A] flex items-center justify-center">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="white">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z" />
+                    </svg>
+                  </span>
+                ))}
+              </span>
+              <a href="#" className="underline underline-offset-2 text-slate-300">347 reviews</a>
+              <span className="font-bold text-[#00B67A] flex items-center gap-1">
+                <span className="w-3 h-3 bg-[#00B67A] inline-block" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }} />
+                Trustpilot
+              </span>
             </span>
           </div>
         </div>
 
+        {/* Right column — Clay-style table on dark */}
         <div className="lg:pl-4">
-          <ClayStyleTable />
+          <HeroVisual />
         </div>
       </div>
     </section>
