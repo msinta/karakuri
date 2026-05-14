@@ -51,29 +51,42 @@ export default function DemoCallout() {
                   <span className="text-white text-xs font-bold">#カスタマーサクセス</span>
                 </div>
 
-                {/* AI draft preview */}
+                {/* AI outbound draft preview */}
                 <div className="p-4 space-y-3">
+                  {/* Target company context */}
+                  <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-black text-slate-700">株式会社モチコ</span>
+                      <span className="text-[9px] text-slate-400">担当: 田中 健 (CMO)</span>
+                    </div>
+                    <div className="flex gap-1 mt-1">
+                      <span className="text-[8px] bg-sky-100 text-sky-700 px-1.5 py-0.5 rounded font-bold">Sansan</span>
+                      <span className="text-[8px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">帝国DB 12.4億</span>
+                      <span className="text-[8px] bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded font-bold">TSR 85名</span>
+                    </div>
+                  </div>
+
                   <div className="bg-amber-50 border border-amber-200 rounded-xl p-3">
                     <div className="flex items-center gap-1.5 mb-1.5">
-                      <span className="text-[9px] font-black text-amber-800 uppercase tracking-widest">🤖 AI下書き</span>
+                      <span className="text-[9px] font-black text-amber-800 uppercase tracking-widest">🤖 AI日本語アウトバウンド</span>
                     </div>
                     <p className="text-[11px] text-slate-700 leading-relaxed">
-                      田中さま、ご注文の#JP-4421につきまして、配送が完了しましたのでご報告いたします。LINEでも追跡情報をお送りしました...
+                      田中様、貴社のCRM刷新プロジェクトのニュースを拝見しました。日本のB2Bデータエンリッチメントをご提案できればと存じます...
                     </p>
                   </div>
 
                   <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
                     <div className="flex items-center gap-1.5 mb-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                      <span className="text-[10px] font-bold text-slate-700">承認待ち</span>
+                      <span className="text-[10px] font-bold text-slate-700">Chatwork で承認待ち</span>
                     </div>
                     <div className="grid grid-cols-2 gap-1.5">
-                      <button className="text-[10px] font-black bg-emerald-600 text-white py-1.5 rounded-md">✓ 承認</button>
+                      <button className="text-[10px] font-black bg-emerald-600 text-white py-1.5 rounded-md">✓ HubSpotに送信</button>
                       <button className="text-[10px] font-semibold border border-slate-200 text-slate-600 py-1.5 rounded-md">編集</button>
                     </div>
                   </div>
 
-                  <p className="text-[10px] text-slate-400 text-center pt-1">承認後 LINEで自動配信</p>
+                  <p className="text-[10px] text-slate-400 text-center pt-1">承認後 HubSpotシーケンスに自動登録</p>
                 </div>
               </div>
             </div>

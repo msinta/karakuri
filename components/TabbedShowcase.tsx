@@ -10,7 +10,7 @@ export default function TabbedShowcase() {
   const active = content.tabbedShowcase.tabs.find(tab => tab.id === activeTab)!
 
   return (
-    <section id="connectors" className="py-24 px-5 bg-slate-50">
+    <section id="sources" className="py-24 px-5 bg-slate-50">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10 max-w-2xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-4 tracking-tight">
