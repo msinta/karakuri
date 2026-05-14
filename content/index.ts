@@ -85,19 +85,19 @@ export interface ProductContent {
 const content: ProductContent = {
   meta: {
     title: {
-      jp: 'Karakuri — 日本GTMスタック専用 ワークフロー自動化',
-      en: 'Karakuri — Workflow automation for the Japanese GTM stack',
+      jp: 'Karakuri — 日本のB2Bデータエンリッチメント。Clayの日本版',
+      en: 'Karakuri — B2B prospect enrichment for Japan. Clay, built for the JP stack',
     },
     description: {
-      jp: 'Sansan・HubSpot・Salesforce・Chatwork・Slack・LINEを日本のGTMテンプレートで繋ぐ。Shopifyストア専用のn8n。',
-      en: 'Connect Sansan, HubSpot, Salesforce, Chatwork, Slack, and LINE with Japan-specific GTM workflow templates. n8n for Shopify, JP-stack ready.',
+      jp: 'Sansan・Wantedly・帝国データバンク・TSRから企業データを取得し、AIが日本語でパーソナライズ。HubSpot・SalesforceにそのままPush。日本のB2BセールスチームのClay。',
+      en: 'Pull prospect data from Sansan, Wantedly, Teikoku Databank, and TSR. AI personalizes in Japanese. Push to HubSpot or Salesforce. Clay, built for Japanese B2B sales teams.',
     },
   },
 
   nav: {
     links: [
       { label: { jp: '機能', en: 'Features' }, href: '/#features' },
-      { label: { jp: 'コネクタ', en: 'Connectors' }, href: '/#connectors' },
+      { label: { jp: 'データソース', en: 'Data sources' }, href: '/#sources' },
       { label: { jp: '料金', en: 'Pricing' }, href: '/#pricing' },
       { label: { jp: 'FAQ', en: 'FAQ' }, href: '/#faq' },
     ],
@@ -105,177 +105,177 @@ const content: ProductContent = {
   },
 
   hero: {
-    eyebrow: { jp: '$0 ベータ — 利用料なし', en: 'From $0 beta — no usage fees' },
+    eyebrow: { jp: '日本のB2Bリスト構築・エンリッチメント', en: 'B2B list-building & enrichment for Japan' },
     headline: {
-      jp: '日本のGTMスタックを\n繋いで自動化',
-      en: 'Automate your Japanese\nGTM stack',
+      jp: '日本のB2Bデータを\nエンリッチして\nアウトバウンド',
+      en: 'Enrich Japanese\nB2B prospects.\nOutreach at scale',
     },
     subheadline: {
-      jp: 'あなたは設定するだけ、Karakuriが動かす。Sansan・Chatwork・Shopify・LINEを繋ぐワークフロー。コーディング不要、サプライズ請求なし、エンジニア不要。',
-      en: 'You configure it, Karakuri runs it. Workflows across Sansan, Chatwork, Shopify, and LINE. No code, no surprise bills, zero engineering.',
+      jp: 'Sansan・Wantedly・帝国データバンク・TSRから企業データを取得。AIが日本語でパーソナライズし、HubSpot・SalesforceにPush。北米のClayが日本のセールスチーム向けに。',
+      en: 'Pull prospect and company data from Sansan, Wantedly, Teikoku Databank, and TSR. AI writes native-Japanese personalization. Sync to HubSpot or Salesforce. Clay, rebuilt for Japanese B2B teams.',
     },
     cta: { jp: 'プランを見る', en: 'View plans' },
     secondaryCta: { jp: 'デモを見る', en: 'Watch the demo' },
     guarantee: { jp: '30日間返金保証', en: '30-day money-back guarantee' },
     includes: [
-      { jp: '日本SaaSコネクタ 9種類', en: '9 Japanese SaaS connectors' },
-      { jp: 'JP-GTMテンプレート無料', en: 'Free JP-GTM templates' },
-      { jp: 'Chatwork承認ゲート', en: 'Chatwork approval gates' },
+      { jp: '日本のB2Bデータソース 6種類', en: '6 Japanese B2B data sources' },
+      { jp: 'AIによる日本語パーソナライズ', en: 'Native-Japanese AI personalization' },
+      { jp: 'HubSpot・SalesforceへPush', en: 'Push to HubSpot or Salesforce' },
     ],
   },
 
   socialProof: {
     statText: {
-      jp: '日本の{count}店舗のShopifyマーチャントが事前登録',
-      en: 'Powering {count}+ Japanese Shopify merchants',
+      jp: '日本のB2Bセールスチーム {count}社が事前登録中',
+      en: 'Powering {count}+ Japanese B2B sales teams',
     },
     logos: [
       { name: 'Sansan', emoji: '名' },
+      { name: 'Wantedly', emoji: 'W' },
+      { name: '帝国DB', emoji: 'TDB' },
+      { name: 'TSR', emoji: '商' },
+      { name: '法人番号', emoji: '法' },
       { name: 'HubSpot', emoji: 'H' },
-      { name: 'Salesforce', emoji: 'S' },
+      { name: 'Salesforce', emoji: 'SF' },
+      { name: 'Mazrica', emoji: 'M' },
       { name: 'Chatwork', emoji: 'C' },
       { name: 'LINE WORKS', emoji: 'L' },
-      { name: 'Slack', emoji: '#' },
-      { name: 'freee', emoji: 'f' },
-      { name: 'MoneyForward', emoji: 'MF' },
-      { name: '楽楽精算', emoji: '楽' },
-      { name: 'Shopify', emoji: 'S' },
     ],
   },
 
   valueProps: {
     sectionTitle: {
-      jp: '必要なものすべて。\n余計なものは一切なし',
-      en: 'All the essentials.\nNone of the nonsense',
+      jp: '日本のB2Bデータを\nスプレッドシートのように扱う',
+      en: 'Japanese B2B data,\nstructured like a spreadsheet',
     },
     sectionSubtitle: {
-      jp: '日本SaaSのコネクタ、JP-GTMテンプレート、Chatwork承認ゲートをすべて含む。',
-      en: 'JP-SaaS connectors, GTM templates, and Chatwork approval gates — included.',
+      jp: 'Sansan・帝国DB・TSRなどの企業データソースを1つのテーブルに統合。各列にエンリッチメントを設定。',
+      en: 'Unify Sansan, Teikoku Databank, TSR and more into one table. Each column is an enrichment step.',
     },
     items: [
       {
-        headline: { jp: '透明な料金', en: 'Transparent pricing' },
+        headline: { jp: '日本専用のデータソース', en: 'Japan-native data sources' },
         description: {
-          jp: '月額固定、実行回数の課金なし。Zapierの「タスク従量制」のような請求書ショックはありません。',
-          en: 'One monthly price. No per-task fees. No Zapier-style invoice shock at the end of the month.',
+          jp: 'Clayが繋ぐApolloやClearbitは日本企業を網羅できません。KarakuriはSansan・Wantedly・帝国DB・TSR・法人番号公表サイトに対応。',
+          en: 'Clay\'s Apollo and Clearbit miss most Japanese companies. Karakuri taps Sansan, Wantedly, Teikoku Databank, TSR, and the public corporate registry.',
+        },
+        icon: '🇯🇵',
+      },
+      {
+        headline: { jp: 'スプレッドシート型UI', en: 'Spreadsheet-style table' },
+        description: {
+          jp: 'Clayと同じ操作感。各行は企業またはコンタクト、各列はデータソース or エンリッチメント。ノーコードで組み立て可能。',
+          en: 'The same table-first UX as Clay. Rows are companies or contacts; columns are sources or enrichments. No-code from end to end.',
+        },
+        icon: '📊',
+      },
+      {
+        headline: { jp: 'AIによる日本語パーソナライズ', en: 'Native-Japanese AI personalization' },
+        description: {
+          jp: '海外AIの翻訳臭いアウトバウンドではなく、日本のビジネス慣習に沿ったメッセージをAIが下書き。敬語・件名・締め方まで自然。',
+          en: 'No more translation-flavored outbound. AI drafts copy that respects Japanese business norms — keigo, subject lines, sign-offs.',
+        },
+        icon: '✍️',
+      },
+      {
+        headline: { jp: 'HubSpot・SalesforceにPush', en: 'Push to HubSpot or Salesforce' },
+        description: {
+          jp: 'エンリッチ完了後、ワンクリックで日本版HubSpot/Salesforce/MazricaにPush。CSVエクスポートも対応。',
+          en: 'Once enriched, push rows into HubSpot JP, Salesforce JP, or Mazrica with one click. CSV export also supported.',
+        },
+        icon: '🔁',
+      },
+      {
+        headline: { jp: 'クレジット制 + 透明な料金', en: 'Credit-based, transparent pricing' },
+        description: {
+          jp: '使った分だけ消費するクレジット制。Clayと同じ料金構造ですが、日本のチーム向けにJPY/USD両建てで提供。',
+          en: 'A credit model — pay only for what you enrich. Same shape as Clay, billed in either USD or JPY for Japanese teams.',
         },
         icon: '💴',
       },
       {
-        headline: { jp: '完全マネージド', en: 'Fully managed' },
+        headline: { jp: 'APPI準拠 + 日本国内データ', en: 'APPI compliant, JP-region data' },
         description: {
-          jp: 'インフラ・スケーリング・セキュリティはこちら持ち。あなたはワークフローを組むだけ。',
-          en: 'We run the infrastructure, scaling, and security. You just build the workflow.',
+          jp: '個人情報保護法（APPI）に準拠し、データは日本国内（AWS Tokyo / GCP Tokyo）に保存。法務監査にも対応。',
+          en: 'APPI-compliant by design. Data stored in Japan (AWS Tokyo / GCP Tokyo). Audit-ready for your legal team.',
         },
-        icon: '⚙️',
-      },
-      {
-        headline: { jp: 'オールインワン', en: 'All-in-one' },
-        description: {
-          jp: '日本のCRM・営業・経理・コミュニケーションを一つに。複数ツールの組み合わせは不要。',
-          en: 'Japanese CRM, sales, finance, and chat in one place. No multi-tool stitching required.',
-        },
-        icon: '🧩',
-      },
-      {
-        headline: { jp: 'ノーコード優先', en: 'No-code first' },
-        description: {
-          jp: 'ドラッグ＆ドロップでフローを組み、エンジニアの手を借りずに本番運用。',
-          en: 'Drag-and-drop flow builder. Ship to production without an engineer in the loop.',
-        },
-        icon: '🖱️',
-      },
-      {
-        headline: { jp: 'AIによる日本語下書き', en: 'AI Japanese drafts' },
-        description: {
-          jp: 'AIがネイティブ日本語で顧客対応・社内通知を下書き。Chatworkで承認してから送信。',
-          en: 'AI drafts customer replies and internal pings in native Japanese. Approve in Chatwork, then send.',
-        },
-        icon: '🤖',
-      },
-      {
-        headline: { jp: '日本SaaSに対応', en: 'Works with your JP stack' },
-        description: {
-          jp: 'Sansan・freee・楽楽精算・MoneyForward・Chatwork・LINE WORKSなど。ロックインなし。',
-          en: 'Sansan, freee, RakuRaku, MoneyForward, Chatwork, LINE WORKS — all supported. No lock-in.',
-        },
-        icon: '🇯🇵',
+        icon: '🛡️',
       },
     ],
   },
 
   howItWorks: {
     sectionTitle: {
-      jp: '繋ぐだけ。あとはKarakuriが動かします',
-      en: 'Connect it. Karakuri runs it from there',
+      jp: 'リスト → エンリッチ → アウトバウンド',
+      en: 'List → enrich → outreach',
     },
     sectionSubtitle: {
-      jp: 'コード不要。Shopifyに追加して、JP-GTMテンプレートを選ぶだけ。',
-      en: 'No code. Install on Shopify, pick a JP-GTM template, go.',
+      jp: 'Clayと同じ3ステップ。違いは「日本のデータソースで動く」こと。',
+      en: 'Same three steps as Clay. The difference: it actually runs on Japanese data.',
     },
     steps: [
       {
         number: '01',
-        headline: { jp: '日本のSaaSを接続', en: 'Connect your JP tools' },
+        headline: { jp: '企業リストをインポート', en: 'Import your prospect list' },
         description: {
-          jp: 'Sansan・Chatwork・Shopify・LINEを1クリックでOAuth接続。日本語UIで認証完了。',
-          en: 'OAuth into Sansan, Chatwork, Shopify, and LINE in one click — all with a Japanese-language auth flow.',
+          jp: 'CSV・HubSpot・Salesforceから既存リストを取り込み、または「東京の従業員50-200名のSaaS」のような条件でゼロから検索。',
+          en: 'Import a CSV, sync from HubSpot/Salesforce, or search from scratch with filters like "Tokyo SaaS, 50–200 employees".',
         },
       },
       {
         number: '02',
-        headline: { jp: 'テンプレートを選ぶ', en: 'Pick a template' },
+        headline: { jp: '列ごとにエンリッチ', en: 'Enrich column-by-column' },
         description: {
-          jp: '「Sansan → Shopify顧客作成 → Chatwork通知」など、JP-GTMに特化したテンプレートからすぐに動かせます。',
-          en: 'Templates like "Sansan lead → Shopify customer → Chatwork ping" are ready out of the box.',
+          jp: 'Sansanで担当者情報、帝国DBで売上規模、TSRで取引先、WantedlyでカルチャーデータをAIで取得。各列が一つのエンリッチメント。',
+          en: 'Add a column to pull contact data from Sansan, revenue bands from TDB, key customers from TSR, culture signals from Wantedly. Each column is one enrichment.',
         },
       },
       {
         number: '03',
-        headline: { jp: '本番運用と拡張', en: 'Run and scale' },
+        headline: { jp: 'AIでパーソナライズして送信', en: 'Personalize with AI, then send' },
         description: {
-          jp: '実行ログ・エラー通知・Chatwork承認ゲートで安心運用。チーム拡大時もそのまま使えます。',
-          en: 'Run logs, error alerts, and Chatwork approval gates keep you in control. Scales with your team.',
+          jp: 'AIが日本語で1社1社に合わせたメッセージを下書き。HubSpot/Salesforceにシーケンスとして登録、またはChatworkで承認後にメール配信。',
+          en: 'AI drafts a per-company message in native Japanese. Push as a sequence to HubSpot/Salesforce, or route through Chatwork for approval before sending.',
         },
       },
     ],
   },
 
   tabbedShowcase: {
-    sectionTitle: { jp: '日本SaaSコネクタライブラリ', en: 'JP-SaaS connector library' },
+    sectionTitle: { jp: '日本専用データソース', en: 'Japan-native data sources' },
     sectionSubtitle: {
-      jp: 'Zapierやn8nに無い、日本のGTMで本当に使われるツールに対応。',
-      en: 'Tools the Japanese GTM stack actually runs on — the ones Zapier and n8n skip.',
+      jp: 'Clayが繋ぐ海外データソースでは見えない日本企業。Karakuriは日本のB2Bを網羅。',
+      en: 'The data sources Clay can\'t reach. Karakuri taps the ones that actually map Japanese B2B.',
     },
     tabs: [
       {
+        id: 'sources',
+        label: { jp: 'データソース', en: 'Data sources' },
+        tools: [
+          { name: 'Sansan', sub: { jp: '名刺・連絡先', en: 'Contacts' }, color: '#0EA5E9' },
+          { name: 'Wantedly', sub: { jp: '採用・カルチャー', en: 'Hiring & culture' }, color: '#10B981' },
+          { name: '帝国DB', sub: { jp: '財務データ', en: 'Financial data' }, color: '#7C3AED' },
+          { name: 'TSR', sub: { jp: '取引先・与信', en: 'Customers & credit' }, color: '#F97316' },
+        ],
+      },
+      {
         id: 'crm',
-        label: { jp: 'CRM・営業', en: 'CRM & sales' },
+        label: { jp: 'CRM', en: 'CRMs' },
         tools: [
-          { name: 'Sansan', sub: { jp: '名刺管理', en: 'Business cards' }, color: '#0EA5E9' },
-          { name: 'HubSpot', sub: { jp: 'CRM', en: 'CRM' }, color: '#F97316' },
-          { name: 'Salesforce', sub: { jp: 'CRM', en: 'CRM' }, color: '#0EA5E9' },
-          { name: 'Shopify', sub: { jp: 'EC', en: 'Commerce' }, color: '#7C3AED' },
+          { name: 'HubSpot JP', sub: { jp: 'CRM', en: 'CRM' }, color: '#F97316' },
+          { name: 'Salesforce JP', sub: { jp: 'CRM', en: 'CRM' }, color: '#0EA5E9' },
+          { name: 'Mazrica', sub: { jp: '国産CRM', en: 'JP-native CRM' }, color: '#EC4899' },
+          { name: 'kintone', sub: { jp: 'カスタムDB', en: 'Custom DB' }, color: '#3B82F6' },
         ],
       },
       {
-        id: 'comms',
-        label: { jp: 'コミュニケーション', en: 'Comms' },
+        id: 'outreach',
+        label: { jp: 'アウトリーチ', en: 'Outreach' },
         tools: [
-          { name: 'Chatwork', sub: { jp: 'チャット', en: 'Chat' }, color: '#10B981' },
-          { name: 'LINE WORKS', sub: { jp: '社内LINE', en: 'JP-LINE for biz' }, color: '#06C755' },
-          { name: 'Slack', sub: { jp: 'チャット', en: 'Chat' }, color: '#4F46E5' },
-          { name: 'LINE', sub: { jp: '顧客通知', en: 'Customer alerts' }, color: '#06C755' },
-        ],
-      },
-      {
-        id: 'ops',
-        label: { jp: '経理・運用', en: 'Finance & ops' },
-        tools: [
-          { name: 'freee', sub: { jp: '会計', en: 'Accounting' }, color: '#2563EB' },
-          { name: 'MoneyForward', sub: { jp: '経費', en: 'Expenses' }, color: '#3B82F6' },
-          { name: '楽楽精算', sub: { jp: '経費', en: 'Expenses' }, color: '#F59E0B' },
-          { name: 'Sansan', sub: { jp: '請求書AI', en: 'Invoice AI' }, color: '#0EA5E9' },
+          { name: 'Chatwork', sub: { jp: '承認', en: 'Approvals' }, color: '#10B981' },
+          { name: 'LINE WORKS', sub: { jp: '社内通知', en: 'Internal' }, color: '#06C755' },
+          { name: 'Slack', sub: { jp: '社内通知', en: 'Internal' }, color: '#4F46E5' },
+          { name: 'Gmail / Outlook', sub: { jp: 'メール配信', en: 'Email send' }, color: '#EF4444' },
         ],
       },
     ],
@@ -284,12 +284,12 @@ const content: ProductContent = {
   demoCallout: {
     badge: { jp: 'NEW', en: 'New' },
     headline: {
-      jp: 'AIが日本語で下書き、Chatworkで承認',
-      en: 'AI drafts in Japanese. You approve in Chatwork',
+      jp: 'AIが日本語で1社ずつ書く。\n翻訳臭さゼロ。',
+      en: 'AI writes one-to-one in\nnative Japanese. No translation tells.',
     },
     description: {
-      jp: 'お客様への日本語メール・LINEメッセージ・Chatworkコメントの下書きをAIが作成。送信前にChatworkで承認、誤送信を防ぎながら時間を節約します。',
-      en: 'AI drafts customer emails, LINE replies, and Chatwork messages in native Japanese. Each one routes through a Chatwork approval gate — speed without slip-ups.',
+      jp: '相手企業のSansan担当者情報・帝国DB財務・最新ニュースをコンテキストに、AIが日本のビジネスマナーに沿ったメッセージを下書き。Chatworkで承認後、HubSpotのシーケンスに自動登録します。',
+      en: 'AI grounds each message in the prospect\'s Sansan contact, TDB financials, and latest news, then drafts in tone-appropriate Japanese. Approve in Chatwork, drop into a HubSpot sequence — done.',
     },
     cta: { jp: 'デモを見る', en: 'Watch the demo' },
   },
@@ -298,26 +298,26 @@ const content: ProductContent = {
     sectionTitle: { jp: 'もっと深く', en: 'Go deeper' },
     items: [
       {
-        headline: { jp: '日本SaaS専用のコネクタライブラリ', en: 'Connector library for Japanese SaaS' },
+        headline: { jp: 'スプレッドシート型エンリッチメントテーブル', en: 'Spreadsheet-style enrichment table' },
         description: {
-          jp: 'Sansan・freee・楽楽精算・MoneyForward・Chatwork・LINE WORKS・Salesforce Japan・HubSpotなど、日本のGTMで使われる主要ツールに対応。新しいツールは追加可能です。',
-          en: 'Native connectors for Sansan, freee, RakuRaku, MoneyForward, Chatwork, LINE WORKS, Salesforce Japan, HubSpot — every staple of the Japanese GTM stack. New tools added on request.',
+          jp: 'Clayと同じ操作感のテーブルUI。各行が企業、各列が日本のデータソースやAIエンリッチメント。条件分岐・If文・カスタムプロンプトもセル単位で設定可能。',
+          en: 'The same table-first UX as Clay. Each row is a company; each column is a JP data source or AI enrichment. Conditionals, if-statements, and custom prompts at the cell level.',
         },
-        tag: { jp: 'コネクタ', en: 'Connectors' },
+        tag: { jp: 'テーブルUI', en: 'Table UI' },
       },
       {
-        headline: { jp: 'JP-GTMテンプレート ＋ ビジュアルフロー', en: 'JP-GTM templates + visual flow editor' },
+        headline: { jp: '日本のB2Bデータソース統合', en: 'Built-in Japanese B2B data sources' },
         description: {
-          jp: '「Sansan → HubSpot → Chatwork承認 → Shopify顧客作成」のような日本のGTM特有のフローをテンプレ化。ドラッグ＆ドロップで微調整、コード不要です。',
-          en: 'Templates encode JP-specific patterns like "Sansan → HubSpot → Chatwork approval → Shopify customer". Tune them with a visual builder; no code required.',
+          jp: 'Sansan API・Wantedly公開データ・帝国データバンク・東京商工リサーチ・法人番号公表サイトを統合済み。海外ツールでは取得できない日本企業データを1クリックでエンリッチ。',
+          en: 'Native integrations with Sansan API, Wantedly public data, Teikoku Databank, Tokyo Shoko Research, and the public corporate registry. Enrich Japanese companies foreign tools can\'t see.',
         },
-        tag: { jp: 'テンプレート', en: 'Templates' },
+        tag: { jp: 'JP-ソース', en: 'JP sources' },
       },
       {
-        headline: { jp: 'AIによる下書き作成と承認フロー', en: 'AI drafts + human approval gates' },
+        headline: { jp: 'AI日本語パーソナライズ ＋ Chatwork承認', en: 'AI Japanese personalization + Chatwork approval' },
         description: {
-          jp: 'お客様への日本語メール・LINEメッセージ・Chatworkコメントの下書きをAIが作成。送信前にChatworkで承認、誤送信を防ぎながら時間を節約します。',
-          en: 'AI drafts Japanese customer emails, LINE replies, and Chatwork messages. Each goes through a Chatwork approval gate before it ships — speed without slip-ups.',
+          jp: '相手企業のコンテキストをもとに、AIが日本のビジネスマナーに沿ったメッセージを下書き。送信前にChatworkで承認、誤送信を防ぎながら時間を節約します。',
+          en: 'AI drafts personalized Japanese outbound grounded in each prospect\'s context. Each draft routes through a Chatwork approval gate — speed without slip-ups.',
         },
         tag: { jp: 'AI＋承認', en: 'AI + approval' },
       },
@@ -327,8 +327,8 @@ const content: ProductContent = {
   pricing: {
     sectionTitle: { jp: '料金プラン', en: 'Pricing' },
     sectionSubtitle: {
-      jp: '創業者価格は先着順。リリース時に値上がりします。',
-      en: 'Founder pricing is first-come, first-served. Prices rise at launch.',
+      jp: '創業者価格は先着順。リリース時に値上がりします。Clay型のクレジットモデル。',
+      en: 'Founder pricing is first-come, first-served. Credit-based, Clay-style billing. Prices rise at launch.',
     },
     tiers: [
       {
@@ -338,9 +338,9 @@ const content: ProductContent = {
         period: { jp: '/月', en: '/mo' },
         description: { jp: '創業者枠で全機能を試す', en: 'Founder access — all features' },
         features: [
-          { jp: '日本SaaS全コネクタ', en: 'All JP connectors' },
-          { jp: 'JP-GTMテンプレート', en: 'JP-GTM templates' },
-          { jp: 'ベータ期間中は無制限', en: 'Unlimited during beta' },
+          { jp: '月500クレジット', en: '500 credits/month' },
+          { jp: '日本のデータソース全て', en: 'All JP data sources' },
+          { jp: 'AIエンリッチメント無制限', en: 'Unlimited AI enrichment' },
           { jp: 'コミュニティサポート', en: 'Community support' },
         ],
         highlighted: false,
@@ -348,16 +348,16 @@ const content: ProductContent = {
       {
         id: 'starter',
         name: { jp: 'スターター', en: 'Starter' },
-        price: '$29',
-        originalPrice: '$59',
+        price: '$149',
+        originalPrice: '$299',
         discount: { jp: '50% OFF 創業者価格', en: '50% off founder price' },
         period: { jp: '/月', en: '/mo' },
-        description: { jp: '小さなチームの本格運用', en: 'Production-ready for small teams' },
+        description: { jp: '小規模セールスチーム向け', en: 'For small sales teams' },
         features: [
-          { jp: 'ベータの全機能', en: 'Everything in Beta' },
-          { jp: '最大3つのワークフロー', en: 'Up to 3 active workflows' },
-          { jp: '実行ログ・エラー通知', en: 'Run logs + error alerts' },
-          { jp: 'Chatwork承認ゲート', en: 'Chatwork approval gates' },
+          { jp: '月5,000クレジット', en: '5,000 credits/month' },
+          { jp: '5シート含む', en: '5 seats included' },
+          { jp: 'HubSpot・Salesforce連携', en: 'HubSpot + Salesforce sync' },
+          { jp: 'AI日本語パーソナライズ', en: 'AI Japanese personalization' },
           { jp: 'メールサポート', en: 'Email support' },
         ],
         highlighted: true,
@@ -366,24 +366,24 @@ const content: ProductContent = {
       {
         id: 'growth',
         name: { jp: 'グロース', en: 'Growth' },
-        price: '$79',
-        originalPrice: '$159',
+        price: '$499',
+        originalPrice: '$999',
         discount: { jp: '50% OFF 創業者価格', en: '50% off founder price' },
         period: { jp: '/月', en: '/mo' },
-        description: { jp: '無制限フロー + AI下書き', en: 'Unlimited flows + AI drafts' },
+        description: { jp: 'RevOps本格運用', en: 'For full RevOps teams' },
         features: [
-          { jp: 'スターターの全機能', en: 'Everything in Starter' },
-          { jp: 'ワークフロー無制限', en: 'Unlimited workflows' },
-          { jp: 'AIによる下書き作成', en: 'AI message drafts' },
-          { jp: 'カスタムコネクタ', en: 'Custom connectors' },
+          { jp: '月25,000クレジット', en: '25,000 credits/month' },
+          { jp: '無制限シート', en: 'Unlimited seats' },
+          { jp: 'カスタムデータソース', en: 'Custom data sources' },
+          { jp: 'Chatwork承認ワークフロー', en: 'Chatwork approval workflows' },
           { jp: '優先サポート', en: 'Priority support' },
         ],
         highlighted: false,
       },
     ],
     footnote: {
-      jp: '税抜価格。30日間返金保証。クレジットカード不要でベータ参加可能。',
-      en: 'Prices exclude tax. 30-day money-back guarantee. No credit card required to join beta.',
+      jp: '税抜価格。1クレジット = 1エンリッチメント実行。30日間返金保証。',
+      en: 'Prices exclude tax. 1 credit = 1 enrichment run. 30-day money-back guarantee.',
     },
   },
 
@@ -391,31 +391,31 @@ const content: ProductContent = {
     sectionTitle: { jp: 'よくある質問', en: 'FAQ' },
     items: [
       {
-        q: { jp: 'Zapierやn8nとの違いは何ですか？', en: 'How is Karakuri different from Zapier or n8n?' },
+        q: { jp: 'Clayと何が違うのですか？', en: 'How is this different from Clay?' },
         a: {
-          jp: 'Zapierとn8nは英語前提のツールで、Sansan・Chatwork・freee・楽楽精算のような日本のSaaSのネイティブコネクタがありません。Karakuriは日本のGTMスタックに特化し、日本のテンプレートを最初から提供します。',
-          en: 'Zapier and n8n are English-first and have no native Sansan, Chatwork, freee, or RakuRaku connectors. Karakuri is built specifically for the Japanese GTM stack with JP templates out of the box.',
+          jp: '同じ「テーブル型エンリッチメント」のコンセプトですが、日本市場専用です。Clayが繋ぐApollo・Clearbit・LinkedInは日本のB2Bデータをほぼ網羅できません。KarakuriはSansan・Wantedly・帝国DB・TSR・法人番号公表サイトなど、日本企業を本当に網羅するソースに接続します。AIも日本のビジネスマナーで書きます。',
+          en: 'Same table-shaped enrichment concept — but tuned for Japan. Clay\'s data sources (Apollo, Clearbit, LinkedIn) miss most Japanese companies. Karakuri taps Sansan, Wantedly, Teikoku Databank, TSR, and the corporate registry — the sources that actually map JP B2B. The AI writes in tone-appropriate Japanese too.',
         },
       },
       {
         q: { jp: 'コードを書く必要はありますか？', en: 'Do I need to write any code?' },
         a: {
-          jp: 'いいえ。ドラッグ＆ドロップのフロービルダーで全て完結します。条件分岐・タイマー・タグ付けもUI上で設定できます。',
-          en: 'No. Everything runs through a drag-and-drop flow builder. Branching, timers, and tagging are all UI-driven.',
+          jp: 'いいえ。Clayと同じくスプレッドシート風のUIで操作します。各列をクリックしてデータソースやAIプロンプトを選ぶだけです。',
+          en: 'No. Just like Clay, the whole product is a spreadsheet-style UI. Click a column header, pick a data source or AI prompt, done.',
         },
       },
       {
-        q: { jp: 'データはどこに保存されますか？セキュリティは？', en: 'Where is my data stored? What about security?' },
+        q: { jp: 'データはどこに保存されますか？APPIは？', en: 'Where is data stored? Is it APPI compliant?' },
         a: {
-          jp: '日本国内リージョン（AWS Tokyo / GCP Tokyo）に保存。通信はすべてTLS暗号化、認証情報は分離されたシークレットストアで管理します。GDPR・APPI準拠。',
-          en: 'Data is stored in Japan-region infrastructure (AWS Tokyo / GCP Tokyo). All traffic is TLS-encrypted, credentials live in a segregated secrets store. GDPR and APPI compliant.',
+          jp: '日本国内リージョン（AWS Tokyo / GCP Tokyo）に保存。個人情報保護法（APPI）に準拠し、データ取得元の利用規約も自動で確認します。法務監査にも対応可能なログを保持しています。',
+          en: 'Data lives in Japan-region infrastructure (AWS Tokyo / GCP Tokyo). APPI-compliant. We also enforce each source\'s ToS automatically and keep audit-ready logs for your legal team.',
         },
       },
       {
-        q: { jp: '対応していないSaaSがあったらどうなりますか？', en: 'What if my tool isn\'t supported yet?' },
+        q: { jp: 'クレジット制とは？', en: 'How does the credit model work?' },
         a: {
-          jp: 'スターター以上のプランではリクエストいただいたコネクタを優先的に追加します。汎用HTTPコネクタもあるので、API経由で接続可能なツールはほぼ何でも繋がります。',
-          en: 'On Starter and above we prioritize requested connectors. A generic HTTP connector also lets you wire up nearly any tool with an API.',
+          jp: 'Clayと同じく、1クレジット = 1エンリッチメント実行。Sansanで担当者を1件取得 = 1クレジット、AIで1メッセージを下書き = 1クレジット、というシンプルな従量。プラン内のクレジットが余ったら翌月に繰り越せます。',
+          en: 'Same as Clay: 1 credit = 1 enrichment run. Pulling one Sansan contact = 1 credit. Drafting one AI message = 1 credit. Unused credits roll over to the next month.',
         },
       },
       {
@@ -429,7 +429,7 @@ const content: ProductContent = {
   },
 
   finalCta: {
-    headline: { jp: '手作業を\n自動化する', en: 'Stop doing\nit by hand' },
+    headline: { jp: '日本のB2Bを\nエンリッチして送る', en: 'Enrich Japanese B2B.\nSend at scale' },
     subtext: {
       jp: 'ベータに登録して、創業者価格と優先アクセスを確保してください。',
       en: 'Join the beta to lock in founder pricing and get early access.',
@@ -446,12 +446,12 @@ const content: ProductContent = {
     tierQuestion: { jp: 'どのプランを使いますか？', en: 'Which plan would you use?' },
     form: {
       name: { jp: 'お名前', en: 'Name' },
-      storeUrl: { jp: 'ShopifyストアURL', en: 'Shopify store URL' },
+      storeUrl: { jp: '会社のWebサイトURL', en: 'Company website URL' },
       email: { jp: 'メールアドレス', en: 'Email' },
-      painPoint: { jp: '今GTM運営で一番困っていること', en: 'Your biggest GTM-ops pain right now' },
+      painPoint: { jp: '今のアウトバウンドで一番困っていること', en: 'Your biggest outbound pain right now' },
       painPointPlaceholder: {
-        jp: '例：SansanからHubSpotへの手動コピペ、Chatwork承認に時間がかかる、Zapierに日本のSaaSがない、など',
-        en: 'e.g. manual Sansan-to-HubSpot copy-paste, slow Chatwork approvals, no JP SaaS connectors in Zapier...',
+        jp: '例：Clayは日本企業データが取れない、Sansanの活用が手作業、AIの日本語が不自然、など',
+        en: 'e.g. Clay misses Japanese companies, manual Sansan lookups, AI Japanese sounds translated...',
       },
       submit: { jp: '早期アクセスに参加する', en: 'Join the waitlist' },
       disclaimer: { jp: 'スパムはありません。リリース時にご連絡します。', en: 'No spam. Launch notification only.' },
