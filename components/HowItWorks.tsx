@@ -3,54 +3,73 @@
 import { useT } from '@/context/LanguageContext'
 import content from '@/content'
 
-const stepVisuals = [
-  // 1: Import — CSV / HubSpot / Search options
-  () => (
-    <div className="space-y-1.5">
-      {[
-        { l: 'CSVをアップロード', sub: '1,247 行' },
-        { l: 'HubSpotから同期', sub: 'Tokyo SaaS' },
-        { l: '条件で検索', sub: '従業員50-200名' },
-      ].map((opt, i) => (
-        <div key={opt.l} className={`flex items-center gap-2 rounded-md px-2 py-1.5 border ${i === 0 ? 'bg-brand-50 border-brand-200' : 'bg-white border-slate-200'}`}>
-          <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${i === 0 ? 'bg-brand-600' : 'bg-slate-300'}`} />
-          <span className="text-[11px] font-bold text-slate-700 flex-1">{opt.l}</span>
-          <span className="text-[9px] text-slate-400">{opt.sub}</span>
-        </div>
-      ))}
-    </div>
-  ),
-  // 2: Enrich columns — Clay-style column header chips
-  () => (
-    <div className="space-y-1.5">
-      {[
-        { src: 'S', name: 'Sansan', col: '#0EA5E9', label: '担当者を取得' },
-        { src: 'T', name: '帝国DB', col: '#7C3AED', label: '売上規模' },
-        { src: 'R', name: 'TSR', col: '#F97316', label: '取引先' },
-        { src: 'W', name: 'Wantedly', col: '#10B981', label: 'カルチャー' },
-      ].map((c) => (
-        <div key={c.name} className="flex items-center gap-2 bg-white rounded-md px-2 py-1.5 border border-slate-200">
-          <div className="w-4 h-4 rounded flex items-center justify-center flex-shrink-0" style={{ backgroundColor: c.col }}>
-            <span className="text-white text-[7px] font-black">{c.src}</span>
-          </div>
-          <span className="text-[10px] font-bold text-slate-700">{c.name}</span>
-          <span className="text-[9px] text-slate-400 truncate">— {c.label}</span>
-        </div>
-      ))}
-    </div>
-  ),
-  // 3: AI personalize + push to CRM
-  () => (
-    <div className="space-y-2">
-      <div className="bg-amber-50 border border-amber-200 rounded-md p-2">
-        <p className="text-[9px] font-black text-amber-800 uppercase tracking-widest mb-0.5">🤖 AI下書き</p>
-        <p className="text-[10px] text-slate-700 italic leading-snug">
-          田中様、貴社の新CRM導入のニュースを拝見し...
-        </p>
+function GlowFrame({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      className="relative rounded-xl overflow-hidden mb-8"
+      style={{
+        backgroundColor: '#0E0E1B',
+        backgroundImage:
+          'linear-gradient(rgba(139,111,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(139,111,255,0.06) 1px, transparent 1px)',
+        backgroundSize: '20px 20px',
+      }}
+    >
+      <div className="relative p-6" style={{ minHeight: 160 }}>
+        {children}
       </div>
-      <div className="grid grid-cols-2 gap-1.5">
-        <button className="text-[10px] font-black bg-emerald-600 text-white py-1.5 rounded-md">✓ HubSpotに登録</button>
-        <button className="text-[10px] font-semibold border border-slate-200 text-slate-600 py-1.5 rounded-md">編集</button>
+    </div>
+  )
+}
+
+const stepVisuals = [
+  () => (
+    <div className="relative">
+      <div className="bg-ink-700 border-2 border-brand-600 rounded-xl px-4 py-3 shadow-lg shadow-brand-600/20 max-w-[260px]">
+        <div className="flex items-center justify-between mb-2">
+          <div className="w-7 h-7 rounded bg-ink-600 flex items-center justify-center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /></svg>
+          </div>
+          <span className="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded">推奨</span>
+        </div>
+        <p className="text-sm font-black text-white">企業リストをインポート</p>
+        <p className="text-[11px] text-slate-400 mt-0.5">CSV · HubSpot · Salesforce</p>
+      </div>
+      <div className="absolute top-3 left-3 right-3 h-12 bg-ink-700/40 border border-white/5 rounded-xl -z-0" />
+    </div>
+  ),
+  () => (
+    <div className="space-y-2 max-w-[260px]">
+      <div className="bg-ink-700 border border-white/10 rounded-lg px-3 py-2">
+        <p className="text-[9px] text-slate-400 font-bold mb-1">エンリッチメント</p>
+        <div className="flex items-center gap-2">
+          <div className="w-4 h-4 rounded bg-sky-500 flex items-center justify-center"><span className="text-[8px] text-white font-black">S</span></div>
+          <span className="text-[12px] font-bold text-white flex-1">Sansan</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M6 9l6 6 6-6" /></svg>
+        </div>
+      </div>
+      <div className="bg-ink-700 border border-white/10 rounded-lg px-3 py-2">
+        <p className="text-[9px] text-slate-400 font-bold mb-1">追加列</p>
+        <p className="text-[11px] font-bold text-white">+ 帝国DB · TSR · Wantedly</p>
+      </div>
+      <button className="bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold rounded-lg w-full py-2 flex items-center justify-center gap-1.5 shadow-lg shadow-brand-600/30">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" /></svg>
+        実行
+      </button>
+    </div>
+  ),
+  () => (
+    <div className="space-y-2 max-w-[260px]">
+      <div className="border-2 border-brand-600/60 rounded-xl px-3 py-2.5 flex items-center gap-2.5 bg-ink-700/50">
+        <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M5 13l4 4L19 7" /></svg>
+        </div>
+        <span className="text-sm font-bold text-white">AI下書き完了</span>
+      </div>
+      <div className="border border-white/10 rounded-xl px-3 py-2.5 flex items-center gap-2.5 bg-ink-700/50 opacity-80">
+        <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M5 13l4 4L19 7" /></svg>
+        </div>
+        <span className="text-sm font-bold text-white">HubSpotに送信済</span>
       </div>
     </div>
   ),
@@ -60,13 +79,13 @@ export default function HowItWorks() {
   const t = useT()
 
   return (
-    <section className="py-24 px-5 bg-white">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-14 max-w-2xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4">
+    <section className="py-28 px-6 bg-ink-900">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16 max-w-2xl mx-auto">
+          <h2 className="text-[2.5rem] sm:text-5xl font-black text-white tracking-tight mb-5 leading-[1.05]">
             {t(content.howItWorks.sectionTitle)}
           </h2>
-          <p className="text-slate-500 text-base">
+          <p className="text-slate-400 text-base sm:text-lg">
             {t(content.howItWorks.sectionSubtitle)}
           </p>
         </div>
@@ -75,21 +94,16 @@ export default function HowItWorks() {
           {content.howItWorks.steps.map((step, i) => {
             const Visual = stepVisuals[i]
             return (
-              <div key={i} className="bg-white rounded-2xl border border-slate-200 p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 text-sm font-black flex items-center justify-center">
-                    {step.number}
-                  </span>
-                  <h3 className="font-black text-slate-900 text-base">
-                    {t(step.headline)}
-                  </h3>
-                </div>
-                <p className="text-sm text-slate-500 leading-relaxed mb-5">
+              <div key={i} className="bg-ink-800/60 border border-white/8 rounded-2xl p-6">
+                <GlowFrame>
+                  <Visual />
+                </GlowFrame>
+                <h3 className="font-black text-white text-xl mb-3">
+                  {step.number}. {t(step.headline)}
+                </h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
                   {t(step.description)}
                 </p>
-                <div className="bg-slate-50 rounded-xl border border-slate-100 p-4">
-                  <Visual />
-                </div>
               </div>
             )
           })}
