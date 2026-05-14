@@ -8,7 +8,6 @@ import ValueProps from '@/components/ValueProps'
 import HowItWorks from '@/components/HowItWorks'
 import TabbedShowcase from '@/components/TabbedShowcase'
 import DemoCallout from '@/components/DemoCallout'
-import Features from '@/components/Features'
 import Pricing from '@/components/Pricing'
 import FAQ from '@/components/FAQ'
 import FinalCTA from '@/components/FinalCTA'
@@ -21,14 +20,13 @@ export default function HomePage() {
   return (
     <>
       <Nav onCtaClick={goToEarlyAccess} />
-      <main>
+      <main className="bg-ink-900">
         <Hero onCtaClick={goToEarlyAccess} />
         <SocialProof count={80} />
         <ValueProps />
         <HowItWorks />
         <TabbedShowcase />
         <DemoCallout />
-        <Features />
         <Pricing onCtaClick={goToEarlyAccess} />
         <FAQ />
         <FinalCTA onCtaClick={goToEarlyAccess} />
