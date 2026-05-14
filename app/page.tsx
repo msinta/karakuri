@@ -4,10 +4,13 @@ import { useRouter } from 'next/navigation'
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import SocialProof from '@/components/SocialProof'
-import PainPoints from '@/components/PainPoints'
+import ValueProps from '@/components/ValueProps'
 import HowItWorks from '@/components/HowItWorks'
+import TabbedShowcase from '@/components/TabbedShowcase'
+import DemoCallout from '@/components/DemoCallout'
 import Features from '@/components/Features'
 import Pricing from '@/components/Pricing'
+import FAQ from '@/components/FAQ'
 import FinalCTA from '@/components/FinalCTA'
 import Footer from '@/components/Footer'
 
@@ -21,10 +24,13 @@ export default function HomePage() {
       <main>
         <Hero onCtaClick={goToEarlyAccess} />
         <SocialProof count={80} />
-        <PainPoints />
+        <ValueProps />
         <HowItWorks />
+        <TabbedShowcase />
+        <DemoCallout />
         <Features />
         <Pricing onCtaClick={goToEarlyAccess} />
+        <FAQ />
         <FinalCTA onCtaClick={goToEarlyAccess} />
       </main>
       <Footer />
