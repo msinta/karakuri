@@ -4,13 +4,11 @@ import { useLang, useT } from '@/context/LanguageContext'
 import content from '@/content'
 import { trackEvent } from '@/lib/ga4'
 
-function Check({ light }: { light?: boolean }) {
+function Check() {
   return (
-    <span className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${light ? 'bg-white/20' : 'bg-emerald-100'}`}>
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={light ? 'white' : '#059669'} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M5 13l4 4L19 7" />
-      </svg>
-    </span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 mt-0.5">
+      <path d="M5 13l4 4L19 7" />
+    </svg>
   )
 }
 
@@ -24,90 +22,112 @@ export default function Pricing({ onCtaClick }: { onCtaClick: () => void }) {
   }
 
   return (
-    <section id="pricing" className="py-24 px-5 bg-white">
+    <section id="pricing" className="py-28 px-6 bg-ink-900">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-14 max-w-xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4">
-            {t(content.pricing.sectionTitle)}
+        <div className="text-center mb-14 max-w-2xl mx-auto">
+          <h2 className="text-[2.5rem] sm:text-5xl font-black text-white tracking-tight mb-5 leading-[1.05]">
+            {lang === 'jp' ? '月額固定、隠れた料金なし' : 'One monthly price, no hidden fees'}
           </h2>
-          <p className="text-slate-500 text-base">
-            {t(content.pricing.sectionSubtitle)}
+          <p className="text-slate-400 text-base sm:text-lg">
+            {lang === 'jp'
+              ? '安心してスタート。30日間返金保証付きでリスクゼロ。'
+              : 'Get started in complete confidence. 30-day money-back guarantee means it\'s risk-free.'}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-5">
-          {content.pricing.tiers.map((tier) => (
-            <div
-              key={tier.id}
-              className={`relative rounded-2xl p-7 flex flex-col transition-all ${
-                tier.highlighted
-                  ? 'bg-slate-900 text-white ring-1 ring-slate-900 shadow-2xl shadow-slate-300/40 lg:scale-[1.02]'
-                  : 'bg-white border border-slate-200 hover:border-slate-300'
-              }`}
-            >
-              {tier.badge && (
-                <div className="absolute -top-3 right-6">
-                  <span className="bg-brand-600 text-white text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-widest">
-                    {t(tier.badge)}
-                  </span>
-                </div>
-              )}
+        <div className="grid lg:grid-cols-3 gap-5 items-start">
+          {content.pricing.tiers.map((tier) => {
+            const num = parseFloat(tier.price.replace(/[^0-9.]/g, ''))
+            const orig = tier.originalPrice ? parseFloat(tier.originalPrice.replace(/[^0-9.]/g, '')) : null
+            const pctOff = orig ? Math.round((1 - num / orig) * 100) : null
 
-              <div className="mb-6">
-                <p className={`text-xs font-bold uppercase tracking-widest mb-3 ${tier.highlighted ? 'text-brand-300' : 'text-slate-400'}`}>
-                  {t(tier.name)}
-                </p>
-
-                {/* Dual price row */}
-                <div className="flex items-baseline gap-2 mb-1.5">
-                  <span className={`text-5xl font-black ${tier.highlighted ? 'text-white' : 'text-slate-900'}`}>
-                    {tier.price}
-                  </span>
-                  <span className={`text-sm font-medium ${tier.highlighted ? 'text-slate-400' : 'text-slate-400'}`}>
-                    {t(tier.period)}
-                  </span>
-                </div>
-
-                {tier.originalPrice && tier.discount && (
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className={`text-sm line-through ${tier.highlighted ? 'text-slate-500' : 'text-slate-400'}`}>
-                      {tier.originalPrice}
-                    </span>
-                    <span className="text-[10px] font-black bg-brand-600 text-white px-2 py-0.5 rounded uppercase">
-                      {t(tier.discount)}
-                    </span>
+            return (
+              <div key={tier.id} className="relative">
+                {tier.highlighted && (
+                  <div className="bg-brand-600 text-white text-center text-[11px] font-black uppercase tracking-widest py-2.5 rounded-t-2xl">
+                    {lang === 'jp' ? '人気No.1' : 'Most Popular'}
                   </div>
                 )}
 
-                <p className={`text-sm ${tier.highlighted ? 'text-slate-300' : 'text-slate-500'}`}>
-                  {t(tier.description)}
-                </p>
+                <div
+                  className={`rounded-2xl p-7 flex flex-col bg-ink-800/60 border ${
+                    tier.highlighted
+                      ? 'border-brand-600 rounded-t-none'
+                      : 'border-white/10'
+                  }`}
+                >
+                  {pctOff && (
+                    <div className="flex justify-end mb-2">
+                      <span className="text-[10px] font-black bg-brand-500/15 text-brand-300 px-2.5 py-1 rounded">
+                        {pctOff}% off
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="mb-3">
+                    <p className="text-white font-black text-xl mb-1">
+                      {t(tier.name)}
+                    </p>
+                    <p className="text-sm text-slate-400">
+                      {t(tier.description)}
+                    </p>
+                  </div>
+
+                  {tier.originalPrice && (
+                    <p className="text-sm line-through text-slate-500 mb-0.5">
+                      {tier.originalPrice}
+                    </p>
+                  )}
+                  <div className="flex items-baseline gap-1 mb-1">
+                    <span className="text-5xl font-black text-white">
+                      {tier.price}
+                    </span>
+                    <span className="text-sm font-medium text-slate-400">
+                      {t(tier.period)}
+                    </span>
+                  </div>
+
+                  {tier.discount && (
+                    <p className="text-sm font-black text-brand-400 mb-5">
+                      {t(tier.discount)}
+                    </p>
+                  )}
+                  {!tier.discount && <div className="mb-5" />}
+
+                  <button
+                    onClick={() => handleCta(tier.id)}
+                    className={`w-full py-3.5 rounded-xl text-sm font-black mb-5 transition-colors ${
+                      tier.highlighted
+                        ? 'bg-white text-ink-900 hover:bg-slate-200'
+                        : 'border border-white/15 text-white hover:bg-white/5'
+                    }`}
+                  >
+                    {lang === 'jp' ? 'プランを選ぶ' : 'Choose plan'}
+                  </button>
+
+                  <p className="text-[11px] text-slate-500 leading-relaxed mb-6">
+                    {tier.id === 'beta'
+                      ? (lang === 'jp' ? 'ベータ期間中は無料。リリース時に値上がりします。' : 'Free during beta. Prices rise at launch.')
+                      : tier.originalPrice
+                        ? (lang === 'jp' ? `年払いで割引。通常価格 ${tier.originalPrice}/月。` : `Save with yearly billing. Renews at ${tier.originalPrice}/mo.`)
+                        : ''}
+                  </p>
+
+                  <ul className="space-y-2.5 mb-2">
+                    {tier.features.map((f, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-slate-200">
+                        <Check />
+                        <span>{t(f)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-
-              <ul className="flex-1 space-y-3 mb-8">
-                {tier.features.map((f, i) => (
-                  <li key={i} className={`flex items-start gap-2.5 text-sm ${tier.highlighted ? 'text-slate-100' : 'text-slate-700'}`}>
-                    <Check light={tier.highlighted} />
-                    <span>{t(f)}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                onClick={() => handleCta(tier.id)}
-                className={`w-full py-3.5 rounded-xl text-sm font-black transition-colors ${
-                  tier.highlighted
-                    ? 'bg-brand-600 hover:bg-brand-700 text-white shadow-lg shadow-amber-700/40'
-                    : 'bg-slate-100 hover:bg-slate-200 text-slate-900'
-                }`}
-              >
-                {lang === 'jp' ? 'プランを選ぶ' : 'Choose plan'}
-              </button>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
-        <p className="text-center text-xs text-slate-400 mt-8 max-w-xl mx-auto">
+        <p className="text-center text-xs text-slate-500 mt-8 max-w-2xl mx-auto">
           {t(content.pricing.footnote)}
         </p>
       </div>
