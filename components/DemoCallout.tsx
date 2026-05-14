@@ -12,82 +12,93 @@ export default function DemoCallout() {
   }
 
   return (
-    <section className="py-24 px-5 bg-white">
+    <section className="py-16 px-6 bg-ink-900">
       <div className="max-w-6xl mx-auto">
-        <div className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-amber-900 overflow-hidden">
-          <div className="grid lg:grid-cols-2 gap-0">
+        <div
+          className="relative rounded-3xl border border-white/8 overflow-hidden"
+          style={{
+            backgroundColor: '#0E0E1B',
+            backgroundImage:
+              'linear-gradient(rgba(139,111,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(139,111,255,0.06) 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+          }}
+        >
+          <div className="grid lg:grid-cols-2 gap-0 items-center">
 
             {/* Left — copy */}
-            <div className="p-10 sm:p-14 flex flex-col justify-center">
-              <span className="inline-flex items-center gap-1.5 bg-brand-500/20 text-brand-100 text-xs font-black px-2.5 py-1 rounded-full uppercase tracking-widest border border-brand-500/30 mb-5 self-start">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-400" />
+            <div className="p-10 sm:p-14">
+              <span className="inline-flex items-center bg-brand-500/15 text-brand-300 text-xs font-black px-3 py-1 rounded-full border border-brand-500/30 mb-6">
                 {t(content.demoCallout.badge)}
               </span>
 
-              <h2 className="text-3xl sm:text-4xl font-black text-white mb-5 leading-tight tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-black text-white mb-5 leading-[1.1] tracking-tight whitespace-pre-line">
                 {t(content.demoCallout.headline)}
               </h2>
-              <p className="text-slate-300 text-base leading-relaxed mb-7 max-w-md">
+              <p className="text-slate-400 text-base leading-relaxed mb-7 max-w-md">
                 {t(content.demoCallout.description)}
               </p>
 
               <button
                 onClick={handleClick}
-                className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-900 font-black px-6 py-3 rounded-xl text-sm transition-colors w-fit"
+                className="inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 font-bold text-sm transition-colors"
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
                 {t(content.demoCallout.cta)}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <path d="M7 17L17 7M9 7h8v8" />
+                </svg>
               </button>
             </div>
 
-            {/* Right — mini chat preview */}
-            <div className="relative p-8 sm:p-10 flex items-center justify-center">
-              <div className="w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden">
-                {/* Chatwork-style header */}
-                <div className="bg-emerald-600 px-4 py-2.5 flex items-center gap-2">
-                  <div className="w-6 h-6 rounded bg-white/90 flex items-center justify-center">
-                    <span className="text-emerald-700 text-[10px] font-black">CW</span>
+            {/* Right — code/data window with floating purple action */}
+            <div className="relative p-8 sm:p-10 flex items-center justify-center min-h-[340px]">
+              {/* Stacked window frames */}
+              <div className="relative w-full max-w-sm">
+                <div className="absolute -top-2 -left-2 right-2 bottom-2 bg-ink-700/40 border border-white/5 rounded-xl" />
+                <div className="absolute -top-1 -left-1 right-1 bottom-1 bg-ink-700/60 border border-white/8 rounded-xl" />
+
+                {/* Front window */}
+                <div className="relative bg-ink-800 border border-white/10 rounded-xl overflow-hidden shadow-2xl shadow-black/40">
+                  <div className="bg-ink-700/60 px-3 py-2 flex items-center gap-1.5 border-b border-white/5">
+                    <div className="w-2 h-2 rounded-full bg-white/20" />
+                    <div className="w-2 h-2 rounded-full bg-white/20" />
+                    <div className="w-2 h-2 rounded-full bg-white/20" />
+                    <span className="ml-2 text-[10px] text-slate-500 font-mono">draft.json</span>
                   </div>
-                  <span className="text-white text-xs font-bold">#カスタマーサクセス</span>
+                  <div className="p-3 font-mono text-[11px] leading-relaxed">
+                    {[
+                      { n: 1, code: '{', c: 'text-slate-500' },
+                      { n: 2, code: '  "company": "株式会社モチコ",', c: 'text-slate-300' },
+                      { n: 3, code: '  "contact": "田中 健 (CMO)",', c: 'text-slate-300' },
+                      { n: 4, code: '  "revenue": "12.4億",', c: 'text-slate-300' },
+                      { n: 5, code: '  "ai_draft":', c: 'text-slate-300' },
+                      { n: 6, code: '    "田中様、貴社のCRM刷新...",', c: 'text-brand-300' },
+                      { n: 7, code: '  "approved_by": "Chatwork"', c: 'text-emerald-400' },
+                      { n: 8, code: '}', c: 'text-slate-500' },
+                    ].map((line) => (
+                      <div key={line.n} className="flex">
+                        <span className="text-slate-600 w-6 text-right pr-2 select-none">{line.n}</span>
+                        <span className={line.c}>{line.code}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                {/* AI outbound draft preview */}
-                <div className="p-4 space-y-3">
-                  {/* Target company context */}
-                  <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-black text-slate-700">株式会社モチコ</span>
-                      <span className="text-[9px] text-slate-400">担当: 田中 健 (CMO)</span>
-                    </div>
-                    <div className="flex gap-1 mt-1">
-                      <span className="text-[8px] bg-sky-100 text-sky-700 px-1.5 py-0.5 rounded font-bold">Sansan</span>
-                      <span className="text-[8px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">帝国DB 12.4億</span>
-                      <span className="text-[8px] bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded font-bold">TSR 85名</span>
-                    </div>
-                  </div>
+                {/* Floating purple "Push" button */}
+                <button
+                  onClick={handleClick}
+                  className="absolute -top-4 -right-4 bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm px-4 py-2.5 rounded-xl shadow-2xl shadow-brand-600/50 transition-colors flex items-center gap-2"
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" /></svg>
+                  Push
+                </button>
 
-                  <div className="bg-amber-50 border border-amber-200 rounded-xl p-3">
-                    <div className="flex items-center gap-1.5 mb-1.5">
-                      <span className="text-[9px] font-black text-amber-800 uppercase tracking-widest">🤖 AI日本語アウトバウンド</span>
-                    </div>
-                    <p className="text-[11px] text-slate-700 leading-relaxed">
-                      田中様、貴社のCRM刷新プロジェクトのニュースを拝見しました。日本のB2Bデータエンリッチメントをご提案できればと存じます...
-                    </p>
-                  </div>
-
-                  <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
-                    <div className="flex items-center gap-1.5 mb-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                      <span className="text-[10px] font-bold text-slate-700">Chatwork で承認待ち</span>
-                    </div>
-                    <div className="grid grid-cols-2 gap-1.5">
-                      <button className="text-[10px] font-black bg-emerald-600 text-white py-1.5 rounded-md">✓ HubSpotに送信</button>
-                      <button className="text-[10px] font-semibold border border-slate-200 text-slate-600 py-1.5 rounded-md">編集</button>
-                    </div>
-                  </div>
-
-                  <p className="text-[10px] text-slate-400 text-center pt-1">承認後 HubSpotシーケンスに自動登録</p>
-                </div>
+                {/* Cursor */}
+                <svg
+                  className="absolute -top-9 right-2 hidden sm:block"
+                  width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden
+                >
+                  <path d="M2 2l8 18 2-8 8-2z" />
+                </svg>
               </div>
             </div>
 
