@@ -37,3 +37,11 @@
   70% { transform: translate(-50%,-50%) scale(2.2); opacity: 0; }
   100% { transform: translate(-50%,-50%) scale(2.2); opacity: 0; }
 }
+
+@keyframes karakuri-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-karakuri-marquee {
+  animation: karakuri-marquee 36s linear infinite;
+}
