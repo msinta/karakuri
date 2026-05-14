@@ -9,6 +9,8 @@ export interface PricingTier {
   id: string
   name: Copy
   price: string
+  originalPrice?: string
+  discount?: Copy
   period: Copy
   description: Copy
   features: Copy[]
@@ -20,21 +22,38 @@ export interface ProductContent {
   meta: { title: Copy; description: Copy }
   nav: { links: { label: Copy; href: string }[]; cta: Copy }
   hero: {
-    badge: Copy
+    eyebrow: Copy
     headline: Copy
     subheadline: Copy
     cta: Copy
-    demoCta: Copy
+    secondaryCta: Copy
+    guarantee: Copy
+    includes: Copy[]
   }
-  socialProof: { text: Copy }
-  painPoints: {
+  socialProof: {
+    statText: Copy
+    logos: { name: string; emoji: string }[]
+  }
+  valueProps: {
     sectionTitle: Copy
-    items: { headline: Copy; description: Copy }[]
+    sectionSubtitle: Copy
+    items: { headline: Copy; description: Copy; icon: string }[]
   }
   howItWorks: {
     sectionTitle: Copy
     sectionSubtitle: Copy
     steps: { number: string; headline: Copy; description: Copy }[]
+  }
+  tabbedShowcase: {
+    sectionTitle: Copy
+    sectionSubtitle: Copy
+    tabs: { id: string; label: Copy; tools: { name: string; sub: Copy; color: string }[] }[]
+  }
+  demoCallout: {
+    badge: Copy
+    headline: Copy
+    description: Copy
+    cta: Copy
   }
   features: {
     sectionTitle: Copy
@@ -44,6 +63,11 @@ export interface ProductContent {
     sectionTitle: Copy
     sectionSubtitle: Copy
     tiers: PricingTier[]
+    footnote: Copy
+  }
+  faq: {
+    sectionTitle: Copy
+    items: { q: Copy; a: Copy }[]
   }
   finalCta: { headline: Copy; subtext: Copy; cta: Copy }
   reveal: {
@@ -73,64 +97,118 @@ const content: ProductContent = {
   nav: {
     links: [
       { label: { jp: '機能', en: 'Features' }, href: '/#features' },
+      { label: { jp: 'コネクタ', en: 'Connectors' }, href: '/#connectors' },
       { label: { jp: '料金', en: 'Pricing' }, href: '/#pricing' },
+      { label: { jp: 'FAQ', en: 'FAQ' }, href: '/#faq' },
     ],
-    cta: { jp: 'ベータに参加する', en: 'Join the beta' },
+    cta: { jp: 'プランを見る', en: 'View plans' },
   },
 
   hero: {
-    badge: {
-      jp: '日本GTMスタック × Shopify',
-      en: 'Japanese GTM stack × Shopify',
-    },
+    eyebrow: { jp: '$0 ベータ — 利用料なし', en: 'From $0 beta — no usage fees' },
     headline: {
-      jp: 'Sansan・HubSpot・\nChatwork・LINEを\n繋ぐ',
-      en: 'Connect Sansan,\nHubSpot, Chatwork,\nand LINE',
+      jp: '日本のGTMスタックを\n繋いで自動化',
+      en: 'Automate your Japanese\nGTM stack',
     },
     subheadline: {
-      jp: 'n8nやZapierは日本のGTMツールを理解しません。Karakuriなら、SansanからHubSpot、Chatworkで承認、Shopify注文、LINE通知まで、日本のセールス・運営フロー専用のテンプレートで一気通貫。',
-      en: 'n8n and Zapier don\'t speak the Japanese stack. Karakuri ships pre-built templates connecting Sansan → HubSpot → Chatwork approval → Shopify order → LINE notification — the full JP GTM loop.',
+      jp: 'あなたは設定するだけ、Karakuriが動かす。Sansan・Chatwork・Shopify・LINEを繋ぐワークフロー。コーディング不要、サプライズ請求なし、エンジニア不要。',
+      en: 'You configure it, Karakuri runs it. Workflows across Sansan, Chatwork, Shopify, and LINE. No code, no surprise bills, zero engineering.',
     },
-    cta: { jp: 'ベータに参加する', en: 'Join the beta' },
-    demoCta: { jp: 'デモを見る', en: 'See a demo' },
+    cta: { jp: 'プランを見る', en: 'View plans' },
+    secondaryCta: { jp: 'デモを見る', en: 'Watch the demo' },
+    guarantee: { jp: '30日間返金保証', en: '30-day money-back guarantee' },
+    includes: [
+      { jp: '日本SaaSコネクタ 9種類', en: '9 Japanese SaaS connectors' },
+      { jp: 'JP-GTMテンプレート無料', en: 'Free JP-GTM templates' },
+      { jp: 'Chatwork承認ゲート', en: 'Chatwork approval gates' },
+    ],
   },
 
   socialProof: {
-    text: {
-      jp: '{count} 店舗のShopifyマーチャントが事前登録中',
-      en: '{count} Japanese Shopify stores on the waitlist',
+    statText: {
+      jp: '日本の{count}店舗のShopifyマーチャントが事前登録',
+      en: 'Powering {count}+ Japanese Shopify merchants',
     },
+    logos: [
+      { name: 'Sansan', emoji: '名' },
+      { name: 'HubSpot', emoji: 'H' },
+      { name: 'Salesforce', emoji: 'S' },
+      { name: 'Chatwork', emoji: 'C' },
+      { name: 'LINE WORKS', emoji: 'L' },
+      { name: 'Slack', emoji: '#' },
+      { name: 'freee', emoji: 'f' },
+      { name: 'MoneyForward', emoji: 'MF' },
+      { name: '楽楽精算', emoji: '楽' },
+      { name: 'Shopify', emoji: 'S' },
+    ],
   },
 
-  painPoints: {
-    sectionTitle: { jp: 'こんな課題、ありませんか？', en: 'Sound familiar?' },
+  valueProps: {
+    sectionTitle: {
+      jp: '必要なものすべて。\n余計なものは一切なし',
+      en: 'All the essentials.\nNone of the nonsense',
+    },
+    sectionSubtitle: {
+      jp: '日本SaaSのコネクタ、JP-GTMテンプレート、Chatwork承認ゲートをすべて含む。',
+      en: 'JP-SaaS connectors, GTM templates, and Chatwork approval gates — included.',
+    },
     items: [
       {
-        headline: { jp: '日本のSaaSは英語のZapierに繋がらない', en: 'Japan-only SaaS doesn\'t connect to Zapier' },
+        headline: { jp: '透明な料金', en: 'Transparent pricing' },
         description: {
-          jp: 'Sansan・Chatwork・freee・楽楽精算など、日本のGTMで必須なツールはZapierやn8nの英語コネクタにありません。手動コピペで時間が消えます。',
-          en: 'Sansan, Chatwork, freee, RakuRaku — the SaaS that runs Japanese GTM has no Zapier or n8n connector. The work falls back to manual copy-paste.',
+          jp: '月額固定、実行回数の課金なし。Zapierの「タスク従量制」のような請求書ショックはありません。',
+          en: 'One monthly price. No per-task fees. No Zapier-style invoice shock at the end of the month.',
         },
+        icon: '💴',
       },
       {
-        headline: { jp: '商談→発注→出荷→通知が手作業', en: 'Lead → order → fulfilment → alert is all manual' },
+        headline: { jp: '完全マネージド', en: 'Fully managed' },
         description: {
-          jp: 'SansanからHubSpot、Chatworkで承認、Shopifyで処理、LINEで顧客通知 — どこかで人手が止まると全体が止まります。日本のEC運営は分断されたツールの集まりです。',
-          en: 'Sansan to HubSpot, Chatwork approval, Shopify order, LINE customer notification — every handoff is human. Drop the baton anywhere and the chain stalls.',
+          jp: 'インフラ・スケーリング・セキュリティはこちら持ち。あなたはワークフローを組むだけ。',
+          en: 'We run the infrastructure, scaling, and security. You just build the workflow.',
         },
+        icon: '⚙️',
       },
       {
-        headline: { jp: 'カスタム開発は高くて遅い', en: 'Custom builds are expensive and slow' },
+        headline: { jp: 'オールインワン', en: 'All-in-one' },
         description: {
-          jp: '内製で繋ぐと開発費は数百万円、エンジニアの時間も消耗。それでもツールが変わるたびにメンテナンスが必要です。',
-          en: 'Building it in-house runs into hundreds of man-hours and millions of yen, then every vendor change forces a rewrite.',
+          jp: '日本のCRM・営業・経理・コミュニケーションを一つに。複数ツールの組み合わせは不要。',
+          en: 'Japanese CRM, sales, finance, and chat in one place. No multi-tool stitching required.',
         },
+        icon: '🧩',
+      },
+      {
+        headline: { jp: 'ノーコード優先', en: 'No-code first' },
+        description: {
+          jp: 'ドラッグ＆ドロップでフローを組み、エンジニアの手を借りずに本番運用。',
+          en: 'Drag-and-drop flow builder. Ship to production without an engineer in the loop.',
+        },
+        icon: '🖱️',
+      },
+      {
+        headline: { jp: 'AIによる日本語下書き', en: 'AI Japanese drafts' },
+        description: {
+          jp: 'AIがネイティブ日本語で顧客対応・社内通知を下書き。Chatworkで承認してから送信。',
+          en: 'AI drafts customer replies and internal pings in native Japanese. Approve in Chatwork, then send.',
+        },
+        icon: '🤖',
+      },
+      {
+        headline: { jp: '日本SaaSに対応', en: 'Works with your JP stack' },
+        description: {
+          jp: 'Sansan・freee・楽楽精算・MoneyForward・Chatwork・LINE WORKSなど。ロックインなし。',
+          en: 'Sansan, freee, RakuRaku, MoneyForward, Chatwork, LINE WORKS — all supported. No lock-in.',
+        },
+        icon: '🇯🇵',
       },
     ],
   },
 
   howItWorks: {
-    sectionTitle: { jp: '3分でJP-GTMワークフローが動く', en: 'Your JP-stack workflow, live in 3 minutes' },
+    sectionTitle: {
+      jp: '繋ぐだけ。あとはKarakuriが動かします',
+      en: 'Connect it. Karakuri runs it from there',
+    },
     sectionSubtitle: {
       jp: 'コード不要。Shopifyに追加して、JP-GTMテンプレートを選ぶだけ。',
       en: 'No code. Install on Shopify, pick a JP-GTM template, go.',
@@ -138,33 +216,86 @@ const content: ProductContent = {
     steps: [
       {
         number: '01',
-        headline: { jp: 'Shopifyアプリをインストール', en: 'Install from Shopify' },
+        headline: { jp: '日本のSaaSを接続', en: 'Connect your JP tools' },
         description: {
-          jp: 'アプリストアから1クリック。注文・顧客・在庫イベントが自動でKarakuriに流れます。',
-          en: 'One click from the Shopify App Store. Order, customer, and inventory events stream into Karakuri.',
+          jp: 'Sansan・Chatwork・Shopify・LINEを1クリックでOAuth接続。日本語UIで認証完了。',
+          en: 'OAuth into Sansan, Chatwork, Shopify, and LINE in one click — all with a Japanese-language auth flow.',
         },
       },
       {
         number: '02',
-        headline: { jp: '日本のSaaSをOAuth接続', en: 'OAuth into your Japanese SaaS' },
+        headline: { jp: 'テンプレートを選ぶ', en: 'Pick a template' },
         description: {
-          jp: 'Sansan・HubSpot・Salesforce・Chatwork・Slack・LINEをワンクリックで接続。日本語UIで認証完了。',
-          en: 'Sansan, HubSpot, Salesforce, Chatwork, Slack, LINE — connect each in one click via a JP-language auth flow.',
+          jp: '「Sansan → Shopify顧客作成 → Chatwork通知」など、JP-GTMに特化したテンプレートからすぐに動かせます。',
+          en: 'Templates like "Sansan lead → Shopify customer → Chatwork ping" are ready out of the box.',
         },
       },
       {
         number: '03',
-        headline: { jp: 'JP-GTMテンプレートを選んで稼働', en: 'Pick a JP-GTM template and launch' },
+        headline: { jp: '本番運用と拡張', en: 'Run and scale' },
         description: {
-          jp: '「商談獲得→Shopify顧客作成→Chatwork通知」など、日本のEC運営に特化したテンプレートからすぐに動かせます。',
-          en: 'Templates like "Sansan lead → Shopify customer → Chatwork ping" are ready out of the box for Japanese operations.',
+          jp: '実行ログ・エラー通知・Chatwork承認ゲートで安心運用。チーム拡大時もそのまま使えます。',
+          en: 'Run logs, error alerts, and Chatwork approval gates keep you in control. Scales with your team.',
         },
       },
     ],
   },
 
+  tabbedShowcase: {
+    sectionTitle: { jp: '日本SaaSコネクタライブラリ', en: 'JP-SaaS connector library' },
+    sectionSubtitle: {
+      jp: 'Zapierやn8nに無い、日本のGTMで本当に使われるツールに対応。',
+      en: 'Tools the Japanese GTM stack actually runs on — the ones Zapier and n8n skip.',
+    },
+    tabs: [
+      {
+        id: 'crm',
+        label: { jp: 'CRM・営業', en: 'CRM & sales' },
+        tools: [
+          { name: 'Sansan', sub: { jp: '名刺管理', en: 'Business cards' }, color: '#0EA5E9' },
+          { name: 'HubSpot', sub: { jp: 'CRM', en: 'CRM' }, color: '#F97316' },
+          { name: 'Salesforce', sub: { jp: 'CRM', en: 'CRM' }, color: '#0EA5E9' },
+          { name: 'Shopify', sub: { jp: 'EC', en: 'Commerce' }, color: '#7C3AED' },
+        ],
+      },
+      {
+        id: 'comms',
+        label: { jp: 'コミュニケーション', en: 'Comms' },
+        tools: [
+          { name: 'Chatwork', sub: { jp: 'チャット', en: 'Chat' }, color: '#10B981' },
+          { name: 'LINE WORKS', sub: { jp: '社内LINE', en: 'JP-LINE for biz' }, color: '#06C755' },
+          { name: 'Slack', sub: { jp: 'チャット', en: 'Chat' }, color: '#4F46E5' },
+          { name: 'LINE', sub: { jp: '顧客通知', en: 'Customer alerts' }, color: '#06C755' },
+        ],
+      },
+      {
+        id: 'ops',
+        label: { jp: '経理・運用', en: 'Finance & ops' },
+        tools: [
+          { name: 'freee', sub: { jp: '会計', en: 'Accounting' }, color: '#2563EB' },
+          { name: 'MoneyForward', sub: { jp: '経費', en: 'Expenses' }, color: '#3B82F6' },
+          { name: '楽楽精算', sub: { jp: '経費', en: 'Expenses' }, color: '#F59E0B' },
+          { name: 'Sansan', sub: { jp: '請求書AI', en: 'Invoice AI' }, color: '#0EA5E9' },
+        ],
+      },
+    ],
+  },
+
+  demoCallout: {
+    badge: { jp: 'NEW', en: 'New' },
+    headline: {
+      jp: 'AIが日本語で下書き、Chatworkで承認',
+      en: 'AI drafts in Japanese. You approve in Chatwork',
+    },
+    description: {
+      jp: 'お客様への日本語メール・LINEメッセージ・Chatworkコメントの下書きをAIが作成。送信前にChatworkで承認、誤送信を防ぎながら時間を節約します。',
+      en: 'AI drafts customer emails, LINE replies, and Chatwork messages in native Japanese. Each one routes through a Chatwork approval gate — speed without slip-ups.',
+    },
+    cta: { jp: 'デモを見る', en: 'Watch the demo' },
+  },
+
   features: {
-    sectionTitle: { jp: '主な機能', en: 'What you get' },
+    sectionTitle: { jp: 'もっと深く', en: 'Go deeper' },
     items: [
       {
         headline: { jp: '日本SaaS専用のコネクタライブラリ', en: 'Connector library for Japanese SaaS' },
@@ -196,8 +327,8 @@ const content: ProductContent = {
   pricing: {
     sectionTitle: { jp: '料金プラン', en: 'Pricing' },
     sectionSubtitle: {
-      jp: 'ベータ期間中は無料。創業者価格はリリース時にロック。',
-      en: 'Free during beta. Lock in founder pricing before launch.',
+      jp: '創業者価格は先着順。リリース時に値上がりします。',
+      en: 'Founder pricing is first-come, first-served. Prices rise at launch.',
     },
     tiers: [
       {
@@ -218,6 +349,8 @@ const content: ProductContent = {
         id: 'starter',
         name: { jp: 'スターター', en: 'Starter' },
         price: '$29',
+        originalPrice: '$59',
+        discount: { jp: '50% OFF 創業者価格', en: '50% off founder price' },
         period: { jp: '/月', en: '/mo' },
         description: { jp: '小さなチームの本格運用', en: 'Production-ready for small teams' },
         features: [
@@ -228,12 +361,14 @@ const content: ProductContent = {
           { jp: 'メールサポート', en: 'Email support' },
         ],
         highlighted: true,
-        badge: { jp: '人気', en: 'Popular' },
+        badge: { jp: '人気', en: 'Most popular' },
       },
       {
         id: 'growth',
         name: { jp: 'グロース', en: 'Growth' },
         price: '$79',
+        originalPrice: '$159',
+        discount: { jp: '50% OFF 創業者価格', en: '50% off founder price' },
         period: { jp: '/月', en: '/mo' },
         description: { jp: '無制限フロー + AI下書き', en: 'Unlimited flows + AI drafts' },
         features: [
@@ -246,15 +381,60 @@ const content: ProductContent = {
         highlighted: false,
       },
     ],
+    footnote: {
+      jp: '税抜価格。30日間返金保証。クレジットカード不要でベータ参加可能。',
+      en: 'Prices exclude tax. 30-day money-back guarantee. No credit card required to join beta.',
+    },
+  },
+
+  faq: {
+    sectionTitle: { jp: 'よくある質問', en: 'FAQ' },
+    items: [
+      {
+        q: { jp: 'Zapierやn8nとの違いは何ですか？', en: 'How is Karakuri different from Zapier or n8n?' },
+        a: {
+          jp: 'Zapierとn8nは英語前提のツールで、Sansan・Chatwork・freee・楽楽精算のような日本のSaaSのネイティブコネクタがありません。Karakuriは日本のGTMスタックに特化し、日本のテンプレートを最初から提供します。',
+          en: 'Zapier and n8n are English-first and have no native Sansan, Chatwork, freee, or RakuRaku connectors. Karakuri is built specifically for the Japanese GTM stack with JP templates out of the box.',
+        },
+      },
+      {
+        q: { jp: 'コードを書く必要はありますか？', en: 'Do I need to write any code?' },
+        a: {
+          jp: 'いいえ。ドラッグ＆ドロップのフロービルダーで全て完結します。条件分岐・タイマー・タグ付けもUI上で設定できます。',
+          en: 'No. Everything runs through a drag-and-drop flow builder. Branching, timers, and tagging are all UI-driven.',
+        },
+      },
+      {
+        q: { jp: 'データはどこに保存されますか？セキュリティは？', en: 'Where is my data stored? What about security?' },
+        a: {
+          jp: '日本国内リージョン（AWS Tokyo / GCP Tokyo）に保存。通信はすべてTLS暗号化、認証情報は分離されたシークレットストアで管理します。GDPR・APPI準拠。',
+          en: 'Data is stored in Japan-region infrastructure (AWS Tokyo / GCP Tokyo). All traffic is TLS-encrypted, credentials live in a segregated secrets store. GDPR and APPI compliant.',
+        },
+      },
+      {
+        q: { jp: '対応していないSaaSがあったらどうなりますか？', en: 'What if my tool isn\'t supported yet?' },
+        a: {
+          jp: 'スターター以上のプランではリクエストいただいたコネクタを優先的に追加します。汎用HTTPコネクタもあるので、API経由で接続可能なツールはほぼ何でも繋がります。',
+          en: 'On Starter and above we prioritize requested connectors. A generic HTTP connector also lets you wire up nearly any tool with an API.',
+        },
+      },
+      {
+        q: { jp: 'ベータ期間はいつまでですか？', en: 'How long does beta last?' },
+        a: {
+          jp: '2026年後半までを予定しています。ベータ参加者は創業者価格（50% OFF）で永続的にロックインされます。',
+          en: 'Beta runs through late 2026. Beta participants lock in founder pricing (50% off) for life.',
+        },
+      },
+    ],
   },
 
   finalCta: {
     headline: { jp: '手作業を\n自動化する', en: 'Stop doing\nit by hand' },
     subtext: {
-      jp: 'ウェイトリストに登録して、創業者価格と優先アクセスを確保してください。',
-      en: 'Join the waitlist to lock in founder pricing and get early access.',
+      jp: 'ベータに登録して、創業者価格と優先アクセスを確保してください。',
+      en: 'Join the beta to lock in founder pricing and get early access.',
     },
-    cta: { jp: 'ベータに参加する', en: 'Join the beta' },
+    cta: { jp: 'プランを見る', en: 'View plans' },
   },
 
   reveal: {
