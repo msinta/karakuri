@@ -13,17 +13,26 @@ const config: Config = {
         sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
       },
       colors: {
-        // Karakuri — deep amber
+        // Karakuri — Hostinger-style vibrant purple
         brand: {
-          50:  '#FFFBEB',
-          100: '#FEF3C7',
-          500: '#F59E0B',
-          600: '#D97706',
-          700: '#B45309',
-          900: '#451A03',
+          50:  '#EEEAFF',
+          100: '#DDD4FF',
+          400: '#8B6FFF',
+          500: '#7556FF',
+          600: '#673DE6',
+          700: '#5226CC',
+          900: '#1F0F66',
+        },
+        // Dark surface palette
+        ink: {
+          DEFAULT: '#0A0A0F',
+          900: '#0A0A0F',
+          800: '#13131C',
+          700: '#1C1C28',
+          600: '#27273B',
+          500: '#3A3A52',
         },
         line: '#06C755',
-        ink: '#0f172a',
       },
     },
   },
